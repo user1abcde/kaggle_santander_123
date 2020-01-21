@@ -12,8 +12,8 @@ indrel,First_Or_Primary
 ult_fec_cli_1t,Last_Date_primary
 indrel_1mes,Customer_Type
 tiprel_1mes,Customer_Relation_Type
-indresi,Is_Residence_Same_Bank
-indext,Is_Birth_Same_Bank
+indresi,Is_Residence_Different_Bank
+indext,Is_Birth_Different_Bank
 conyuemp,Is_Spouse_Of_Employee
 canal_entrada,Customer_Join_Channel
 indfall,Is_Deceased
