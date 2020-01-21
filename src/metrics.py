@@ -57,3 +57,16 @@ def mapk(actual, predicted, k=10):
             The mean average precision at k over the input lists
     """
     return np.mean([apk(a, p, k) for a, p in zip(actual, predicted)])
+
+
+def transform_y(y_mat, thresh):
+    """
+    Transforms Y to a form that can be handled by `mapk`.
+    """
+
+    def _transform_y_row(row):
+        sorted_row = np.argsort(-row)
+        filtered = sorted_row[row[sorted_row] >= thresh]
+        return filtered
+
+    return [_transform_y_row(row) for row in y_mat.values]

@@ -1,19 +1,7 @@
-Interesting Explorations Done:
-1. Missing data for each feature
-2. 10 most common predictors
-3. Correlations between the predictors
-4. Correlations between interesting features to the predictors
-5. Global predictor trend
-6. The best kaggle score divided by best possible score - how much of the change is explainable by the data.
-7. Binary assymetric correlation between predictors
-8. 10 most common residence countries (we can infer this feature is useless, only 0.5% of users are outside spain)
-9. province customer count histogram
-10. histograms for many different features
-
 Interesting Explorations TODO:
 SIMILARITY BASED
 1. Measure similarity between users
-2. Look at users that are similar at a single point in time, and check if their decisions are similar also. Is it common that 2 users with similar stats, choose differently?
+2. Look at users that are similar at a single point in time, and check if their decisions are similar also. Its common that users similar stats choose differently?
 3. Try to visualize clustering/grouping of similar users.
 
 OTHER
@@ -21,15 +9,14 @@ OTHER
 
 Possible models:
 1. try to model as a classification problem - based on all the current features and predictors, what would be the decision next month? fit XGBoost or other.
-2. try timeseries prediction at large scale (look at the most common predictors, and the global trend of each predictor, and decide if buy is probable)
-3. try to predict based on user history (timeseries prediction algorithms)
-4. try to compare single user with similar users (collaborative filtering algorithms)
-5. try hybrid models - combining (stacking or otherwise) predictions of several of the previous approaches
+2. try to predict based on user history (timeseries prediction algorithms)
+3. try to compare single user with similar users (collaborative filtering algorithms)
+4. try hybrid models - combining (stacking or otherwise) predictions of several of the previous approaches
 
 Additional Tasks:
 1. What is the score acheived by baseline models? how does it compare to results in the leaderboard of Kaggle? Possible baselines:
     a. per label logistic regression.
     b. random forest.
-    c. prediction based on the global predictor stats.
 2. try models with missing values and with filled values, check which is better.
-3. add features, for each predictor, signifying how long the user had the label, (maybe also for how long?).
+3. feature engineering - add features for each predictor, signifying how long the user had the label (maybe also other history based features?).
+4. maybe its only interesting, if user had predictor in the past (add as features)
