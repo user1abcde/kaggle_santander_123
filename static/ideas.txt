@@ -32,4 +32,4 @@ Additional Tasks:
     b. random forest.
     c. prediction based on the global predictor stats.
 2. try models with missing values and with filled values, check which is better.
-3. Do proper train/test splitting.
+3. add features, for each predictor, signifying how long the user had the label, (maybe also for how long?).

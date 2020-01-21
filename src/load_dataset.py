@@ -7,7 +7,7 @@ TRANSLATION_DICT_PATH = "static/feature_translation.csv"
 
 
 def split_train_test(dataset, train_ratio, random_seed):
-    customers = dataset.index.unique()
+    customers = pd.Series(dataset.index.unique())
     train_size = math.floor(len(customers) * train_ratio)
     train_customers = set(customers.sample(train_size, random_state=random_seed).values)
 
