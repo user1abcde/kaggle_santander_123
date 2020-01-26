@@ -11,11 +11,14 @@ Possible models:
 1. try to predict based on user history (timeseries prediction algorithms)
 2. try to compare single user with similar users (collaborative filtering algorithms)
 3. Learn to Rank Algorithms
-4. Rank Aggregation - allows hybrid models.
+4. Label Ranking Algorithms
+5. Rank Aggregation - allows hybrid models.
 
 Additional Tasks:
-1. feature engineering - add features for each predictor, signifying how long the user had the label (maybe also other history based features?).
-2. maybe its only interesting, if user had predictor in the past (add as features)
+1. feature engineering - for each predictor, how long the user had it (maybe only whether he ever had it?).
+2. try predicting future assets also, instead of only a single step in time.
+3. try sklearn's multilabel extension.
+
 
 A Taxonomy of Label Ranking Algorithms
 https://pdfs.semanticscholar.org/4366/0d2ff30409a15d2e26e8e9d9b8461e0c0a9a.pdf
