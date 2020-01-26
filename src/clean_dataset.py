@@ -52,5 +52,14 @@ def split_X_Y(clean_dataset_df):
     return X, Y
 
 
+def reduce_train(train_X, train_Y):
+    is_changed_series = train_Y.sum(axis=1) > 0
+
+    X_reduced = train_X[is_changed_series].reset_index(drop=True)
+    Y_reduced = train_Y[is_changed_series].reset_index(drop=True)
+
+    return X_reduced, Y_reduced
+
+
 def get_prediction_features(dataset_df):
     return [col for col in dataset_df.columns if 'FT_' in col]
