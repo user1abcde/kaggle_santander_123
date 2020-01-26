@@ -1,12 +1,3 @@
-Interesting Explorations TODO:
-SIMILARITY BASED
-1. Measure similarity between users
-2. Look at users that are similar at a single point in time, and check if their decisions are similar also. Its common that users similar stats choose differently?
-3. Try to visualize clustering/grouping of similar users.
-
-OTHER
-1. try to understand if there is a reason to look at the old history of the user, when predicting his next move (in such cases, timeseries prediction is the correct approach), or the current point in time is the only thing relevant. Maybe, if a person got rid of a certain asset in the past, it influences the probability he would reaquire it. it is possible we can encapsulate the timeseries information in engineered features, and do regular classification.
-
 Possible models:
 1. try to predict based on user history (timeseries prediction algorithms)
 2. try to compare single user with similar users (collaborative filtering algorithms)
@@ -15,9 +6,9 @@ Possible models:
 5. Rank Aggregation - allows hybrid models.
 
 Additional Tasks:
-1. feature engineering - for each predictor, how long the user had it (maybe only whether he ever had it?).
-2. try predicting future assets also, instead of only a single step in time.
-3. try sklearn's multilabel extension.
+1. try predicting future assets also, instead of only a single step in time.
+2. try sklearn's multilabel extension.
+3. fit with all the data.
 
 
 A Taxonomy of Label Ranking Algorithms
