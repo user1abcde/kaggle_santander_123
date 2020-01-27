@@ -52,6 +52,7 @@ def load_entire_dataset(csv_path, savedir_path, customer_block_size=100000):
         print(f"computing {i} batch")
         chosen_customers = set(customers[i*customer_block_size: (i+1)*customer_block_size])
         partial_df: pd.DataFrame = indexed_df.loc[indexed_df.index.isin(chosen_customers)].compute()
+        partial_df = _clean_dataframe(partial_df)
         partial_df.to_pickle(savedir_path + f'/block{i}.pkl')
         print(f"{i} batch complete")
 
