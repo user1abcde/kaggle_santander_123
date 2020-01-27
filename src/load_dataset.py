@@ -46,10 +46,14 @@ def load_entire_dataset(csv_path, savedir_path, customer_block_size=100000):
     indexed_df = df.set_index('Customer_Code')
     customers = indexed_df.index.unique().compute()
 
+    print("loaded customers set")
+
     for i in range(math.ceil(len(customers) / customer_block_size)):
+        print(f"computing {i} batch")
         chosen_customers = set(customers[i*customer_block_size: (i+1)*customer_block_size])
         partial_df: pd.DataFrame = indexed_df.loc[indexed_df.index.isin(chosen_customers)].compute()
-        partial_df.to_csv(savedir_path + f'/block{i}.csv')
+        partial_df.to_pickle(savedir_path + f'/block{i}.pkl')
+        print(f"{i} batch complete")
 
 
 def get_feature_translation_dict(dict_path):
