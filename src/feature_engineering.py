@@ -6,4 +6,4 @@ def enhance_with_timeseries_features(X, prediction_features):
     had_and_does_not_have_now = ever_had & ~(X_pred.astype('bool'))
 
     for ft in prediction_features:
-        X['HAD_NOT_NOW_' + ft] = had_and_does_not_have_now[ft].astype('int64')
+        X['HAD_NOT_NOW_' + ft.replace('FT_', '')] = had_and_does_not_have_now[ft].astype('int64')

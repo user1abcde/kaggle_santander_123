@@ -5,29 +5,33 @@ CONTEXT_FEATURES_TO_KEEP = ['Row_Date', 'Sex', 'Age', 'Customer_Seniority_Months
 
 
 def clean_dataset(dataset_df, fill_na_context_features=True):
+    clean_dataset_df = clean_without_split(dataset_df, fill_na_context_features)
+    X, Y = split_X_Y(clean_dataset_df)
+    return X, Y
+
+
+def clean_without_split(dataset_df, fill_na_context_features=True):
     prediction_features = get_prediction_features(dataset_df)
 
     all_interesting_features = CONTEXT_FEATURES_TO_KEEP + prediction_features
-    clean_dataset = dataset_df[all_interesting_features]
+    clean_dataset_df = dataset_df[all_interesting_features]
 
-    clean_dataset.loc[clean_dataset['Customer_Seniority_Months'] < 0, 'Customer_Seniority_Months'] = np.nan
+    clean_dataset_df.loc[clean_dataset_df['Customer_Seniority_Months'] < 0, 'Customer_Seniority_Months'] = np.nan
 
     if fill_na_context_features:
         for ft in prediction_features:
-            clean_dataset[ft] = clean_dataset[ft].fillna(0)
+            clean_dataset_df[ft] = clean_dataset_df[ft].fillna(0)
 
-        clean_dataset['Province_Name'] = clean_dataset['Province_Name'].fillna('MADRID')
-        clean_dataset['Segmentation'] = clean_dataset['Segmentation'].fillna('02 - PARTICULARES')
-        clean_dataset['Sex'] = clean_dataset['Sex'].fillna('V')
+        clean_dataset_df['Province_Name'] = clean_dataset_df['Province_Name'].fillna('MADRID')
+        clean_dataset_df['Segmentation'] = clean_dataset_df['Segmentation'].fillna('02 - PARTICULARES')
+        clean_dataset_df['Sex'] = clean_dataset_df['Sex'].fillna('V')
 
         numeric_dtypes = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
-        numeric_columns = clean_dataset.select_dtypes(include=numeric_dtypes).columns
+        numeric_columns = clean_dataset_df.select_dtypes(include=numeric_dtypes).columns
         for ft in numeric_columns:
-            clean_dataset[ft] = clean_dataset[ft].fillna(clean_dataset[ft].mean())
+            clean_dataset_df[ft] = clean_dataset_df[ft].fillna(clean_dataset_df[ft].mean())
 
-    X, Y = split_X_Y(clean_dataset)
-
-    return X, Y
+    return clean_dataset_df
 
 
 def split_X_Y(clean_dataset_df):
