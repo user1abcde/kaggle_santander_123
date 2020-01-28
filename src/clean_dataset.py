@@ -14,7 +14,7 @@ def clean_without_split(dataset_df, fill_na_context_features=True):
     prediction_features = get_prediction_features(dataset_df)
 
     all_interesting_features = CONTEXT_FEATURES_TO_KEEP + prediction_features
-    clean_dataset_df = dataset_df[all_interesting_features]
+    clean_dataset_df = dataset_df[all_interesting_features].copy()
 
     clean_dataset_df.loc[clean_dataset_df['Customer_Seniority_Months'] < 0, 'Customer_Seniority_Months'] = np.nan
 
@@ -30,6 +30,12 @@ def clean_without_split(dataset_df, fill_na_context_features=True):
         numeric_columns = clean_dataset_df.select_dtypes(include=numeric_dtypes).columns
         for ft in numeric_columns:
             clean_dataset_df[ft] = clean_dataset_df[ft].fillna(clean_dataset_df[ft].mean())
+
+    for ft in clean_dataset_df.columns:
+        if clean_dataset_df[ft].dtype == np.float64:
+            clean_dataset_df[ft] = clean_dataset_df[ft].astype('float32')
+        elif clean_dataset_df[ft].dtype == np.int64:
+            clean_dataset_df[ft] = clean_dataset_df[ft].astype('int32')
 
     return clean_dataset_df
 

@@ -9,11 +9,11 @@ def enhance_with_timeseries_features(X, prediction_features):
     lagged5 = compute_lagged(X, prediction_features, 5)
 
     for ft in prediction_features:
-        X['HAD_NOT_NOW_' + ft.replace('FT_', '')] = had_and_does_not_have_now[ft].astype('int64')
-        X['LAG1_' + ft.replace('FT_', '')] = lagged1[ft].astype('int64')
-        X['LAG2_' + ft.replace('FT_', '')] = lagged2[ft].astype('int64')
-        X['LAG3_' + ft.replace('FT_', '')] = lagged3[ft].astype('int64')
-        X['LAG5_' + ft.replace('FT_', '')] = lagged5[ft].astype('int64')
+        X['HAD_NOT_NOW_' + ft.replace('FT_', '')] = had_and_does_not_have_now[ft].astype('int32')
+        X['LAG1_' + ft.replace('FT_', '')] = lagged1[ft].astype('int32')
+        X['LAG2_' + ft.replace('FT_', '')] = lagged2[ft].astype('int32')
+        X['LAG3_' + ft.replace('FT_', '')] = lagged3[ft].astype('int32')
+        X['LAG5_' + ft.replace('FT_', '')] = lagged5[ft].astype('int32')
 
 
 def compute_had_and_does_not_have_now(X, prediction_features):
