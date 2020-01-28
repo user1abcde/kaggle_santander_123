@@ -13,7 +13,9 @@ def fit_model(model, X, Y):
     prediction_features = list(Y.columns)
 
     xgb_X = _prepare_xgb_data(X)
-    model.fit(xgb_X, xgb_X[prediction_features] + Y)
+    xgb_Y = (xgb_X[prediction_features] + Y).fillna(0)
+
+    model.fit(xgb_X, xgb_Y)
 
 
 def predict_proba(model, X, prediction_features):
